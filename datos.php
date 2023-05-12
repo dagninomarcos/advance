@@ -1,6 +1,4 @@
-
 <?php
-
 include('config/db.php');
 $Area_Seleccionada=$_GET['Area'];
 $Semana=$_GET['semana'];

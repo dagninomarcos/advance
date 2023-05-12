@@ -1,10 +1,9 @@
-
 <?php require('config/config.php')?>
 <?php include('config/db.php') ?>
 <?php
 $fecha_sistema=date("Y-m-d");
 $query ="CALL Colores('$fecha_sistema');";
-
+//asdasdasdadsmarcos dagnino estuvo aqui otra vez de nuevo
 // ejectuar el query 
 $result = mysqli_query($mysqli, $query);
 
@@ -18,7 +17,15 @@ mysqli_free_result($result);
 mysqli_close($mysqli);
 ?>
 <?php include('config/header.php')?>
+<style type="text/css">
+.container-cool-index2{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    }
 
+
+</style>
 <body <?php include('config/body.php')?> >
 <?php include('navbar.php');?>
 
@@ -27,8 +34,10 @@ mysqli_close($mysqli);
 <div class="main">
       <aside class="left-index">
 <div class="grid-container-big-index">
-<div class="container-cool-index">
+<div class="container-cool-index2">
 <canvas class="titulo_index" id="cinco-s" width="300" height="300"></canvas>	
+<canvas class="titulo_index" id="referencias" width="300" height="130" style="background-color: white;"></canvas>    
+ 
 </div>
 </div>
 
@@ -37,7 +46,7 @@ mysqli_close($mysqli);
 <main class="main">
 <div class="grid-container-big">
  <h1 class="strokeme" style="font-size:50px;"  style="justify-content: center;">Areas a Seleccionar</h1>
-<div style="display: grid; grid-template-columns: auto auto auto auto; color: white; text-align: center; align-content:center;">
+<div style="display: grid; grid-template-columns: 280px 280px 280px 280px; color: white; text-align: center; align-content:center;">
     <h1 class="strokeme" style="font-size:30px; " >Celdas</h1>
     <h1 class="strokeme" style="font-size:30px;">Sub-ensambles</h1>
     <h1 class="strokeme" style="font-size:30px;">Area 3</h1>
@@ -69,6 +78,7 @@ mysqli_close($mysqli);
 <a href="area.php?Lugar=Ingenieria" class="botones" style="background-color:<?php echo ($data2[17]['Color']);?>;">Ingenieria</a>
 <a href="area.php?Lugar=Mantenimiento" class="botones" style="background-color:<?php echo ($data2[18]['Color']);?>;">Mantenimiento</a>
 <a href="area.php?Lugar=RMA" class="botones"style="background-color:<?php echo ($data2[19]['Color']);?>;">RMA</a>
+<a href="area.php?Lugar=Cuarto_Harneses" class="botones"style="background-color:<?php echo ($data2[28]['Color']);?>;">Cuarto_Harneses</a>
     </div>
     <div class="grid-container-botones">
 <a href="area.php?Lugar=Patios_David" class="botones" style="background-color:<?php echo ($data2[20]['Color']);?>;">Patios<br>David A</a>
@@ -130,6 +140,25 @@ ctx.moveTo(40,30);
 ctx.lineTo(115,30);
 ctx.lineTo(75,45);
 ctx.fill();
+
+
+var canvas2 = document.getElementById("referencias");
+var ctx2 = canvas2.getContext("2d");
+ctx2.fillStyle = "#2d6aa8";
+ctx2.fillRect(10,10,30,30);
+ctx2.fillStyle = "#97c93c";
+ctx2.fillRect(10,50,30,30);
+ctx2.fillStyle = "#b82927";
+ctx2.fillRect(10,90,30,30);
+ctx2.font = "20px Arial Black";
+ctx2.fillStyle = "#000000";
+ctx2.fillText("No tiene Registro",50,35);
+ctx2.font = "13px Arial Black";
+ctx2.fillStyle = "#000000";
+ctx2.fillText("Paso Auditoria de la Semana",50,71);
+ctx2.font = "13px Arial Black";
+ctx2.fillStyle = "#000000";
+ctx2.fillText("No Paso Auditoria de la Semana",50,110);
 
 </script>
 

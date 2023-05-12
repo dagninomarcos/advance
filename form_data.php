@@ -8,6 +8,7 @@ include('config/db.php');
  if(isset($_GET['submite'])){
  	$Fecha=$_GET['Fecha'];
 	$Auditor=$_GET['Auditor'];
+  $Auditado=$_GET['Auditado'];
 	$Area=$_GET['Area'];
 	$C_Despejado=$_GET['Despejar'];
 	$C_Organizar=$_GET['Organizar'];
@@ -22,7 +23,7 @@ $existe=mysqli_fetch_all($array_existe,MYSQLI_NUM);
 mysqli_free_result($array_existe);
 
 if (empty($existe[0])) {
-$query="INSERT INTO `test_data_5s` (`Fecha`, `Auditor`, `Area`, `C_Despejar`, `C_Organizar`, `C_Limpiar`, `C_Estandarizar`, `C_Disciplina`, `C_Seguridad`) VALUES ('$Fecha', '$Auditor', '$Area', '$C_Despejado', '$C_Organizar', '$C_Limpiar', '$C_Estandarizar', '$C_Disciplina', '$C_Seguridad')";
+$query="INSERT INTO `test_data_5s` (`Fecha`, `Auditor`,`Auditado`, `Area`, `C_Despejar`, `C_Organizar`, `C_Limpiar`, `C_Estandarizar`, `C_Disciplina`, `C_Seguridad`) VALUES ('$Fecha', '$Auditor','$Auditado', '$Area', '$C_Despejado', '$C_Organizar', '$C_Limpiar', '$C_Estandarizar', '$C_Disciplina', '$C_Seguridad')";
 mysqli_query($mysqli,$query);
   }
   else{
@@ -38,7 +39,7 @@ mysqli_query($mysqli,$query);
 
 $db= $mysqli;
 $tableName="test_data_5s";
-$columns= ['id', 'Fecha','Auditor','Area','C_Despejar','C_Organizar', 'C_Limpiar','C_Estandarizar','C_Disciplina','C_Seguridad'];
+$columns= ['id', 'Fecha','Auditor','Auditado','Area','C_Despejar','C_Organizar', 'C_Limpiar','C_Estandarizar','C_Disciplina','C_Seguridad'];
 
 $fetchData = fetch_data($db, $tableName, $columns);
 function fetch_data($db, $tableName, $columns){
@@ -86,71 +87,7 @@ return $msg;
 
 	<div class="main">
 
-      <aside class="left">
-  <h1 style="text-align: center; color: white;">Calificaciones</h1>
-<form class="formato">
-<!-- seleccionar la fecha -->
-	<label class="letras_forma" for="Fecha">Fecha:</label>
- 	<input type="date" id="Fecha" name="Fecha" required>
-	<br></br>
-<!-- Seleccionar el Auditor -->
-	<label class="letras_forma" for="Auditor">Auditor</label>
-	<select  name="Auditor" id="Auditor" required>
-		<option value="">--Please choose an option--</option>
-    <option value="Yoselin Salazar ">Yoselin Salazar </option>
-    <option value="Enrique Ambriz">Enrique Ambriz</option>
-    <option value="Julio Saavedra">Julio Saavedra</option>
-    <option value="Marco Barajas">Marco Barajas</option>
-    <option value="Jaime Murillo">Jaime Murillo</option>
-    <option value="Arturo Melendrez ">Arturo Melendrez </option>
-    <option value="Gisel Carmona">Gisel Carmona</option>
-    <option value="Luis Aguillon">Luis Aguillon</option>
-    <option value="Arcadio Navarro">Arcadio Navarro</option>
-    <option value="Nestor German">Nestor German</option>
-    <option value="German Aguilar">German Aguilar</option>
-    <option value="Rafael Espinoza">Rafael Espinoza</option>
-    <option value="Manuel Flores ">Manuel Flores </option>
-    <option value="Octavio Hernandez">Octavio Hernandez</option>
-    <option value="Adrian Delgado">Adrian Delgado</option>
-    <option value="Rafael Rodriguez">Rafael Rodriguez</option>
-    <option value="Zaida Sanchez">Zaida Sanchez</option>
-    <option value="Edgardo Palero">Edgardo Palero</option>
-    <option value="Rodrigo Gutierrez">Rodrigo Gutierrez</option>
-    <option value="Andres Osorio">Andres Osorio</option>
-    <option value="Ramiro Garcia">Ramiro Garcia</option>
-    <option value="Sergio Godoy">Sergio Godoy</option>
-    <option value="Estefania Peña">Estefania Peña</option>
-	</select>
-	<br></br>
-<!-- Seleccionar las calificaciones de cada 5s -->
-<div class="container_calificaciones">
-	<label class="letras_forma" for="Despejar">Despejar</label>
-	<input type="number" id="Despejar" name="Despejar" min="0" max="7"   required>
 
-	<label class="letras_forma" for="Organizar">Organizar</label>	
-	<input type="number" id="Organizar" name="Organizar" min="0" max="8"  required>
-
-	<label class="letras_forma" for="Limpiar">Limpiar</label>
-	<input type="number" id="Limpiar" name="Limpiar" min="0" max="7" required>
-
-	<label class="letras_forma" for="Estandarizar">Estandarizar</label>
-	<input type="number" id="Estandarizar" name="Estandarizar" min="0" max="7"  required>
-
-	<label class="letras_forma" for="Disciplina">Disciplina</label>
-	<input type="number" id="Disciplina" name="Disciplina" min="0" max="7" required>
-
-	<label class="letras_forma" for="Seguridad">Seguridad</label>
-	<input type="number" id="Seguridad" name="Seguridad" min="0" max="7" required>
-</div>
-	<br>
-	<label class="letras_forma" for="Area">Area</label>
-	<select class="Opiciones" name="Area" id="Area" required>
-<?php include('config/list_areas.php');?>
-</select>
-	<br></br>	
-  <div class="container"><input type="submit" value="Aceptar" name="submite" class="btn btn-lg btn-primary"></div>
-	</form>
-      </aside>
       
 <main class="main">
 
@@ -164,6 +101,7 @@ return $msg;
          <th>id</th>
          <th>Fecha</th>
          <th>Auditor</th>
+         <th>Auditado</th>
          <th>Area</th>
          <th>C_Despejar</th>
          <th>C_Organizar</th>
@@ -183,6 +121,7 @@ return $msg;
       <td><?php echo $data['id']??''; ?></td>
       <td><?php echo $data['Fecha']??''; ?></td>
       <td><?php echo $data['Auditor']??''; ?></td>
+      <td><?php echo $data['Auditado']??''; ?></td>
       <td><?php echo $data['Area']??''; ?></td>
       <td><?php echo $data['C_Despejar']??''; ?></td>
       <td><?php echo $data['C_Organizar']??''; ?></td>
@@ -207,9 +146,7 @@ return $msg;
 </div>
 </div>
 </main>
-<aside class="right">
-	
-</aside>
+
 	</div>
 <?php include('config/footer.php')?>
 </body>

@@ -14,12 +14,12 @@ $query =
 $query_oportunidades =
 "SELECT  id,
         Fecha,
-        ROUND((((sum(C_Despejar)-(28*7))*-1)/(28*7))*100,0) as P_Despejar,
-        ROUND((((sum(C_Organizar)-(28*8))*-1)/(28*8))*100,0) as P_Organizar,
-        ROUND((((sum(C_Limpiar)-(28*7))*-1)/(28*7))*100,0) as P_Limpiar,
-        ROUND((((sum(C_Estandarizar)-(28*7))*-1)/(28*7))*100,0) as P_Estandarizar,
-        ROUND((((sum(C_Disciplina)-(28*7))*-1)/(28*7))*100,0) as P_Disciplina,
-        ROUND((((sum(C_Seguridad)-(28*7))*-1)/(28*7))*100,0) as P_Seguridad
+        ROUND((((sum(C_Despejar)-(29*7))*-1)/(29*7))*100,0) as P_Despejar,
+        ROUND((((sum(C_Organizar)-(29*8))*-1)/(29*8))*100,0) as P_Organizar,
+        ROUND((((sum(C_Limpiar)-(29*7))*-1)/(29*7))*100,0) as P_Limpiar,
+        ROUND((((sum(C_Estandarizar)-(29*7))*-1)/(29*7))*100,0) as P_Estandarizar,
+        ROUND((((sum(C_Disciplina)-(29*7))*-1)/(29*7))*100,0) as P_Disciplina,
+        ROUND((((sum(C_Seguridad)-(29*7))*-1)/(29*7))*100,0) as P_Seguridad
 FROM test_5s.test_data_5s where week(Fecha)=$fecha_sistema;";
 // ejectuar el query 
 $result = mysqli_query($mysqli, $query);
@@ -38,7 +38,7 @@ $areas_oportunidad=[intval($data_oportunidades[0]['P_Despejar']),intval($data_op
                     intval($data_oportunidades[0]['P_Limpiar']),intval($data_oportunidades[0]['P_Estandarizar']),
                     intval($data_oportunidades[0]['P_Disciplina']),intval($data_oportunidades[0]['P_Seguridad']),
                   ];
-for ($i=0; $i <= 27; $i++) { 
+for ($i=0; $i <= 28; $i++) { 
   if (empty($data2[$i])) {
   $data2[$i]=array('Fecha'=>'0000-00-00','Area'=>'NA','Sumatoria'=>0,'Porcentaje_OK'=>0,'Oportuniades'=>0);
 }
@@ -47,15 +47,15 @@ for ($i=0; $i <= 27; $i++) {
 // echo json_encode($data2);
 
 // para sacar los valores de lo que dio de resultado el query al igual que los otros for de abajo 
-for ($i=0; $i <= 27; $i++){
+for ($i=0; $i <= 28; $i++){
   $valores_grafica_ok[$i]=intval($data2[$i]['Porcentaje_OK']);
 }
 
-for ($i=0; $i <= 27; $i++){
+for ($i=0; $i <= 28; $i++){
   $valores_grafica_ng[$i]=intval($data2[$i]['Oportuniades']);
 }
 
-for ($i=0; $i <= 27; $i++){
+for ($i=0; $i <= 28; $i++){
   $areas_grafica[$i]=($data2[$i]['Area']);
 }
 
@@ -256,7 +256,7 @@ ctx1.addEventListener('click',(e) => {
         stacked: true,
           beginAtZero: true,
           suggestedMin: 0,
-          suggestedMax: 100
+          suggestedMax: 30
         },
         },
       plugins: {

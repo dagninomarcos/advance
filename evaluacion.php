@@ -1,4 +1,3 @@
-
 <?php require('config/config.php')?>
 <?php
 include('config/db.php');
@@ -6,6 +5,7 @@ $cosa='';
 if(isset($_GET['submite'])){
 	$Fecha=$_GET['Fecha'];
 	$Auditor=$_GET['Auditor'];
+  $Auditado=$_GET['Auditado'];
 	$Area=$_GET['Area'];
 	$C_Despejado[]=array_sum([intval($_GET['1SQ1']),intval($_GET['1SQ2']),intval($_GET['1SQ3']),intval($_GET['1SQ4']),intval($_GET['1SQ5']),intval($_GET['1SQ6']),intval($_GET['1SQ7'])]);
 	$C_Organizar[]=array_sum([intval($_GET['2SQ1']),intval($_GET['2SQ2']),intval($_GET['2SQ3']),intval($_GET['2SQ4']),intval($_GET['2SQ5']),intval($_GET['2SQ6']),intval($_GET['2SQ7']),intval($_GET['2SQ8'])]);
@@ -14,55 +14,97 @@ if(isset($_GET['submite'])){
 	$C_Disciplina[]=array_sum([intval($_GET['5SQ1']),intval($_GET['5SQ2']),intval($_GET['5SQ3']),intval($_GET['5SQ4']),intval($_GET['5SQ5']),intval($_GET['5SQ6']),intval($_GET['5SQ7'])]);
 	$C_Seguridad[]=array_sum([intval($_GET['6SQ1']),intval($_GET['6SQ2']),intval($_GET['6SQ3']),intval($_GET['6SQ4']),intval($_GET['6SQ5']),intval($_GET['6SQ6']),intval($_GET['6SQ7'])]);
 //1S
-  $C_1SQ1=$_GET['1SQ1-Coment'];
-  $C_1SQ2=$_GET['1SQ2-Coment'];
-  $C_1SQ3=$_GET['1SQ3-Coment'];
-  $C_1SQ4=$_GET['1SQ4-Coment'];
-  $C_1SQ5=$_GET['1SQ5-Coment'];
-  $C_1SQ6=$_GET['1SQ6-Coment'];
-  $C_1SQ7=$_GET['1SQ7-Coment'];
+  $C_1SQ1=str_replace('\'','"',$_GET['1SQ1-Coment']);
+  $R_1SQ1=intval($_GET['1SQ1']);
+  $C_1SQ2=str_replace('\'','"',$_GET['1SQ2-Coment']);
+  $R_1SQ2=intval($_GET['1SQ2']);
+  $C_1SQ3=str_replace('\'','"',$_GET['1SQ3-Coment']);
+  $R_1SQ3=intval($_GET['1SQ3']);
+  $C_1SQ4=str_replace('\'','"',$_GET['1SQ4-Coment']);
+  $R_1SQ4=intval($_GET['1SQ4']);
+  $C_1SQ5=str_replace('\'','"',$_GET['1SQ5-Coment']);
+  $R_1SQ5=intval($_GET['1SQ5']);
+  $C_1SQ6=str_replace('\'','"',$_GET['1SQ6-Coment']);
+  $R_1SQ6=intval($_GET['1SQ6']);
+  $C_1SQ7=str_replace('\'','"',$_GET['1SQ7-Coment']);
+  $R_1SQ7=intval($_GET['1SQ7']);
 //2S
-  $C_2SQ1=$_GET['2SQ1-Coment'];
-  $C_2SQ2=$_GET['2SQ2-Coment'];
-  $C_2SQ3=$_GET['2SQ3-Coment'];
-  $C_2SQ4=$_GET['2SQ4-Coment'];
-  $C_2SQ5=$_GET['2SQ5-Coment'];
-  $C_2SQ6=$_GET['2SQ6-Coment'];
-  $C_2SQ7=$_GET['2SQ7-Coment'];
-  $C_2SQ8=$_GET['2SQ8-Coment'];
+  $C_2SQ1=str_replace('\'','"',$_GET['2SQ1-Coment']);
+  $R_2SQ1=intval($_GET['2SQ1']);
+  $C_2SQ2=str_replace('\'','"',$_GET['2SQ2-Coment']);
+  $R_2SQ2=intval($_GET['2SQ2']);
+  $C_2SQ3=str_replace('\'','"',$_GET['2SQ3-Coment']);
+  $R_2SQ3=intval($_GET['2SQ3']);
+  $C_2SQ4=str_replace('\'','"',$_GET['2SQ4-Coment']);
+  $R_2SQ4=intval($_GET['2SQ4']);
+  $C_2SQ5=str_replace('\'','"',$_GET['2SQ5-Coment']);
+  $R_2SQ5=intval($_GET['2SQ5']);
+  $C_2SQ6=str_replace('\'','"',$_GET['2SQ6-Coment']);
+  $R_2SQ6=intval($_GET['2SQ6']);
+  $C_2SQ7=str_replace('\'','"',$_GET['2SQ7-Coment']);
+  $R_2SQ7=intval($_GET['2SQ7']);
+  $C_2SQ8=str_replace('\'','"',$_GET['2SQ8-Coment']);
+  $R_2SQ8=intval($_GET['2SQ8']);
 //3S
-  $C_3SQ1=$_GET['3SQ1-Coment'];
-  $C_3SQ2=$_GET['3SQ2-Coment'];
-  $C_3SQ3=$_GET['3SQ3-Coment'];
-  $C_3SQ4=$_GET['3SQ4-Coment'];
-  $C_3SQ5=$_GET['3SQ5-Coment'];
-  $C_3SQ6=$_GET['3SQ6-Coment'];
-  $C_3SQ7=$_GET['3SQ7-Coment'];
+  $C_3SQ1=str_replace('\'','"',$_GET['3SQ1-Coment']);
+  $R_3SQ1=intval($_GET['3SQ1']);
+  $C_3SQ2=str_replace('\'','"',$_GET['3SQ2-Coment']);
+  $R_3SQ2=intval($_GET['3SQ2']);
+  $C_3SQ3=str_replace('\'','"',$_GET['3SQ3-Coment']);
+  $R_3SQ3=intval($_GET['3SQ3']);
+  $C_3SQ4=str_replace('\'','"',$_GET['3SQ4-Coment']);
+  $R_3SQ4=intval($_GET['3SQ4']);
+  $C_3SQ5=str_replace('\'','"',$_GET['3SQ5-Coment']);
+  $R_3SQ5=intval($_GET['3SQ5']);
+  $C_3SQ6=str_replace('\'','"',$_GET['3SQ6-Coment']);
+  $R_3SQ6=intval($_GET['3SQ6']);
+  $C_3SQ7=str_replace('\'','"',$_GET['3SQ7-Coment']);
+  $R_3SQ7=intval($_GET['3SQ7']);
 //4S
-  $C_4SQ1=$_GET['4SQ1-Coment'];
-  $C_4SQ2=$_GET['4SQ2-Coment'];
-  $C_4SQ3=$_GET['4SQ3-Coment'];
-  $C_4SQ4=$_GET['4SQ4-Coment'];
-  $C_4SQ5=$_GET['4SQ5-Coment'];
-  $C_4SQ6=$_GET['4SQ6-Coment'];
-  $C_4SQ7=$_GET['4SQ7-Coment'];
+  $C_4SQ1=str_replace('\'','"',$_GET['4SQ1-Coment']);
+  $R_4SQ1=intval($_GET['4SQ1']);
+  $C_4SQ2=str_replace('\'','"',$_GET['4SQ2-Coment']);
+  $R_4SQ2=intval($_GET['4SQ2']);
+  $C_4SQ3=str_replace('\'','"',$_GET['4SQ3-Coment']);
+  $R_4SQ3=intval($_GET['4SQ3']);
+  $C_4SQ4=str_replace('\'','"',$_GET['4SQ4-Coment']);
+  $R_4SQ4=intval($_GET['4SQ4']);
+  $C_4SQ5=str_replace('\'','"',$_GET['4SQ5-Coment']);
+  $R_4SQ5=intval($_GET['4SQ5']);
+  $C_4SQ6=str_replace('\'','"',$_GET['4SQ6-Coment']);
+  $R_4SQ6=intval($_GET['4SQ6']);
+  $C_4SQ7=str_replace('\'','"',$_GET['4SQ7-Coment']);
+  $R_4SQ7=intval($_GET['4SQ7']);
 //5S
-  $C_5SQ1=$_GET['5SQ1-Coment'];
-  $C_5SQ2=$_GET['5SQ2-Coment'];
-  $C_5SQ3=$_GET['5SQ3-Coment'];
-  $C_5SQ4=$_GET['5SQ4-Coment'];
-  $C_5SQ5=$_GET['5SQ5-Coment'];
-  $C_5SQ6=$_GET['5SQ6-Coment'];
-  $C_5SQ7=$_GET['5SQ7-Coment'];
+  $C_5SQ1=str_replace('\'','"',$_GET['5SQ1-Coment']);
+  $R_5SQ1=intval($_GET['5SQ1']);
+  $C_5SQ2=str_replace('\'','"',$_GET['5SQ2-Coment']);
+  $R_5SQ2=intval($_GET['5SQ2']);
+  $C_5SQ3=str_replace('\'','"',$_GET['5SQ3-Coment']);
+  $R_5SQ3=intval($_GET['5SQ3']);
+  $C_5SQ4=str_replace('\'','"',$_GET['5SQ4-Coment']);
+  $R_5SQ4=intval($_GET['5SQ4']);
+  $C_5SQ5=str_replace('\'','"',$_GET['5SQ5-Coment']);
+  $R_5SQ5=intval($_GET['5SQ5']);
+  $C_5SQ6=str_replace('\'','"',$_GET['5SQ6-Coment']);
+  $R_5SQ6=intval($_GET['5SQ6']);
+  $C_5SQ7=str_replace('\'','"',$_GET['5SQ7-Coment']);
+  $R_5SQ7=intval($_GET['5SQ7']);
 //6S
-  $C_6SQ1=$_GET['6SQ1-Coment'];
-  $C_6SQ2=$_GET['6SQ2-Coment'];
-  $C_6SQ3=$_GET['6SQ3-Coment'];
-  $C_6SQ4=$_GET['6SQ4-Coment'];
-  $C_6SQ5=$_GET['6SQ5-Coment'];
-  $C_6SQ6=$_GET['6SQ6-Coment'];
-  $C_6SQ7=$_GET['6SQ7-Coment'];
-
+  $C_6SQ1=str_replace('\'','"',$_GET['6SQ1-Coment']);
+  $R_6SQ1=intval($_GET['6SQ1']);
+  $C_6SQ2=str_replace('\'','"',$_GET['6SQ2-Coment']);
+  $R_6SQ2=intval($_GET['6SQ2']);
+  $C_6SQ3=str_replace('\'','"',$_GET['6SQ3-Coment']);
+  $R_6SQ3=intval($_GET['6SQ3']);
+  $C_6SQ4=str_replace('\'','"',$_GET['6SQ4-Coment']);
+  $R_6SQ4=intval($_GET['6SQ4']);
+  $C_6SQ5=str_replace('\'','"',$_GET['6SQ5-Coment']);
+  $R_6SQ5=intval($_GET['6SQ5']);
+  $C_6SQ6=str_replace('\'','"',$_GET['6SQ6-Coment']);
+  $R_6SQ6=intval($_GET['6SQ6']);
+  $C_6SQ7=str_replace('\'','"',$_GET['6SQ7-Coment']);
+  $R_6SQ7=intval($_GET['6SQ7']);
 
 $query_verificar="SELECT * FROM test_5s.test_data_5s where week(Fecha)=week('$Fecha') and Area='$Area';";
 // echo $query_verificar;
@@ -72,7 +114,7 @@ $existe=mysqli_fetch_all($array_existe,MYSQLI_NUM);
 mysqli_free_result($array_existe);
 
 if (empty($existe[0])) {
-$sql ="INSERT INTO `test_data_5s` (`Fecha`, `Auditor`, `Area`, `C_Despejar`, `C_Organizar`, `C_Limpiar`, `C_Estandarizar`, `C_Disciplina`, `C_Seguridad`) VALUES ('$Fecha', '$Auditor', '$Area', '$C_Despejado[0]', '$C_Organizar[0]', '$C_Limpiar[0]', '$C_Estandarizar[0]', '$C_Disciplina[0]', '$C_Seguridad[0]');";
+$sql ="INSERT INTO `test_data_5s` (`Fecha`, `Auditor`,`Auditado`, `Area`, `C_Despejar`, `C_Organizar`, `C_Limpiar`, `C_Estandarizar`, `C_Disciplina`, `C_Seguridad`) VALUES ('$Fecha', '$Auditor','$Auditado', '$Area', '$C_Despejado[0]', '$C_Organizar[0]', '$C_Limpiar[0]', '$C_Estandarizar[0]', '$C_Disciplina[0]', '$C_Seguridad[0]');";
 
 $sql .="INSERT INTO `test_5s`.`comentarios`
 (`Fecha`,`Auditor`,`Area`,`No_Pregunta`,`Comentario`)
@@ -100,6 +142,10 @@ VALUES
 ('$Fecha','$Auditor','$Area','6SQ1','$C_6SQ1'),('$Fecha','$Auditor','$Area','6SQ2','$C_6SQ2'),('$Fecha','$Auditor','$Area','6SQ3','$C_6SQ3'),
 ('$Fecha','$Auditor','$Area','6SQ4','$C_6SQ4'),('$Fecha','$Auditor','$Area','6SQ5','$C_6SQ5'),('$Fecha','$Auditor','$Area','6SQ6','$C_6SQ6'),
 ('$Fecha','$Auditor','$Area','6SQ7','$C_6SQ7');";
+
+
+$sql .="INSERT INTO `test_5s`.`questions`(`Fecha`,`Area`,`Auditar`,`Auditado`,`1SQ1`,`1SQ2`,`1SQ3`,`1SQ4`,`1SQ5`,`1SQ6`,`1SQ7`,`2SQ1`,`2SQ2`,`2SQ3`,`2SQ4`,`2SQ5`,`2SQ6`,`2SQ7`,`2SQ8`,`3SQ1`,`3SQ2`,`3SQ3`,`3SQ4`,`3SQ5`,`3SQ6`,`3SQ7`,`4SQ1`,`4SQ2`,`4SQ3`,`4SQ4`,`4SQ5`,`4SQ6`,`4SQ7`,`5SQ1`,`5SQ2`,`5SQ3`,`5SQ4`,`5SQ5`,`5SQ6`,`5SQ7`,`6SQ1`,`6SQ2`,`6SQ3`,`6SQ4`,`6SQ5`,`6SQ6`,`6SQ7`)VALUES
+('$Fecha','$Area','$Auditor','$Auditado',$R_1SQ1,$R_1SQ2,$R_1SQ3,$R_1SQ4,$R_1SQ5,$R_1SQ6,$R_1SQ7,$R_2SQ1,$R_2SQ2,$R_2SQ3,$R_2SQ4,$R_2SQ5,$R_2SQ6,$R_2SQ7,$R_2SQ8,$R_3SQ1,$R_3SQ2,$R_3SQ3,$R_3SQ4,$R_3SQ5,$R_3SQ6,$R_3SQ7,$R_4SQ1,$R_4SQ2,$R_4SQ3,$R_4SQ4,$R_4SQ5,$R_4SQ6,$R_4SQ7,$R_5SQ1,$R_5SQ2,$R_5SQ3,$R_5SQ4,$R_5SQ5,$R_5SQ6,$R_5SQ7,$R_6SQ1,$R_6SQ2,$R_6SQ3,$R_6SQ4,$R_6SQ5,$R_6SQ6,$R_6SQ7);";
 
 mysqli_multi_query($mysqli,$sql);
   }
@@ -757,37 +803,11 @@ textarea {
 	</select>
 	<label class="letras_forma" for="Area">Area</label>
 	<select class="Opiciones" name="Area" id="Area" required>
-		<option value="">--Please choose an option--</option>
-    <option value="C1">C1</option>
-    <option value="C2">C2</option>
-    <option value="C3">C3</option>
-    <option value="C4">C4</option>
-    <option value="C8">C8</option>
-    <option value="XFMR_Switcher">XFMR_Switcher</option>
-    <option value="Cables">Cables</option>
-    <option value="Preparacion">Preparacion</option>
-    <option value="Almacen">Almacen</option>
-    <option value="Celda7">Celda7</option>
-    <option value="Patios_Rampas_Gerardo">Patios_Rampas_Gerardo</option>
-    <option value="Patios_Rampas_Loreley">Patios_Rampas_Loreley</option>
-    <option value="Mantenimiento">Mantenimiento</option>
-    <option value="Quimicos">Quimicos</option>
-    <option value="Ingenieria">Ingenieria</option>
-    <option value="Chassis">Chassis</option>
-    <option value="SMT">SMT</option>
-    <option value="IQC">IQC</option>
-    <option value="BURN_IN">BURN_IN</option>
-    <option value="RMA">RMA</option>
-    <option value="Patios_Frontal_Manuel">Patios_Frontal_Manuel</option>
-    <option value="Patios_David">Patios_David</option>
-    <option value="Patios_Miguel">Patios_Miguel</option>
-    <option value="Patio_Jardin">Patio_Jardin</option>
-    <option value="Patio_Pasillo_Acceso">Patio_Pasillo_Acceso</option>
-    <option value="Patio_Estacionamientos">Patio_Estacionamientos</option>
-    <option value="Celda_PCS">Celda PCS</option>
-    <option value="XFMR_Toroides_Lineales">XFMR Toroides/Lineales</option>
+<?php include('config/list_areas.php');?>
 </select>
-<input type="submit" name="submite" value="Aceptar" class="btn btn-lg btn-primary" style="width:200px; text-align:center; align-content:center;">
+  <label class="letras_forma" for="Auditado">Auditado</label>
+ <input type="text" id="Auditado" name="Auditado" style="height:55px; text-align:center; align-content:center;" required> 
+<input type="submit" name="submite" value="Aceptar" class="btn btn-lg btn-primary" style="width:150px; text-align:center; align-content:center;">
 </div>
 
 </form>

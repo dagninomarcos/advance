@@ -1,4 +1,4 @@
-	<option value="">--Please choose an option--</option>
+    <option value="">--Please choose an option--</option>
     <option value="C1">C1</option>
     <option value="C2">C2</option>
     <option value="C3">C3</option>
@@ -27,3 +27,4 @@
     <option value="Patio_Estacionamientos">Patio_Estacionamientos</option>
     <option value="Celda_PCS">Celda PCS</option>
     <option value="XFMR_Toroides_Lineales">XFMR Toroides/Lineales</option>
+    <option value="Cuarto_Harneses">Cuarto_Harneses</option>

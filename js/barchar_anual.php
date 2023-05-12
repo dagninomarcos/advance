@@ -4,8 +4,7 @@
 include('config/db.php');
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); 
 // query a ejecutar
-$query =
-"CALL Anual_Mes($Mes_Seleccionado);";
+$query ="SELECT Area, sum(total) as total FROM anual_mes_view where month(fecha)=$Mes_Seleccionado group by Area order by total desc;";
 
 // ejectuar el query 
 $result = mysqli_query($mysqli, $query);
@@ -23,16 +22,16 @@ mysqli_close($mysqli);
 
 
 
-for ($i=0; $i <= 27; $i++) { 
+for ($i=0; $i <= 28; $i++) { 
   if (empty($data2[$i])) {
   $data2[$i]=array('Area'=>'NA','total'=>0);
 }}
 
-for ($i=0; $i <= 27; $i++){
+for ($i=0; $i <= 28; $i++){
   $areas_grafica[$i]=($data2[$i]['Area']);
 }
 
-for ($i=0; $i <= 27; $i++){
+for ($i=0; $i <= 28; $i++){
   $valores_grafica_ok[$i]=($data2[$i]['total']);
 }
 

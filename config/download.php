@@ -7,7 +7,7 @@ if(isset($_GET['value'])){
 	$inicio=$_GET['fecha-inicio'];
 	$final=$_GET['fecha-final'];
 
-$result = $mysqli->query("SELECT * FROM test_data_5s where Fecha>='$inicio' and Fecha<='$final';");
+$result = $mysqli->query("SELECT * FROM test_5s.download where Fecha>='$inicio' and Fecha<='$final';");
 
 if (empty($result)) die('Couldn\'t fetch records');
 $num_fields = mysqli_num_fields($result);

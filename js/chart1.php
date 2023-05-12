@@ -409,28 +409,24 @@ xhr.onreadystatechange = function() {
     firstHalf.forEach((item, index) => {
       const dataRow = table.insertRow();
       const dataCell1 = dataRow.insertCell();
-      dataCell1.addEventListener("mouseover", () => {
-      dataCell1.title = "Mi texto";});
       const dataCell2 = dataRow.insertCell();
       const dataCell3 = dataRow.insertCell();
       const dataCell4 = dataRow.insertCell();
       dataCell1.textContent = item.No_pregunta;
       dataCell1.classList.add("mi-clase");
-    dataCell1.addEventListener("mouseover", () => {
-    dataCell1.title = item.pregunta;
+      dataCell1.addEventListener("mouseover", () => {
+      dataCell1.title = item.pregunta;
       });
       dataCell2.textContent = item.Comentario;
       dataCell2.classList.add("mi-clase");
       dataCell2.style.width = '150px'; // Establecer ancho para la celda dataCell2
-      dataCell3.textContent = '';
-      dataCell4.textContent = '';
       // Insertar la segunda mitad en las celdas 3 y 4
       if (index < secondHalf.length) {
         const secondHalfItem = secondHalf[index];
         dataCell3.textContent = secondHalfItem.No_pregunta;
         dataCell3.classList.add("mi-clase");
         dataCell3.addEventListener("mouseover", () => {
-        dataCell3.title = item.pregunta;
+        dataCell3.title = secondHalfItem.pregunta;
       });
         dataCell4.textContent = secondHalfItem.Comentario;
         dataCell4.classList.add("mi-clase");
@@ -462,33 +458,33 @@ xhr.send();
 
 // Agregar un escuchador de eventos para el clic
   ctx.addEventListener('click', () =>{
-    cliclableScales('<?php echo $Area_Seleccionada ?>',1);
+    cliclableScales('<?php echo $Area_Seleccionada ?>',0);
   },
 );
 
 
 // Agregar un escuchador de eventos para el clic
   ctx2.addEventListener('click', () =>{
-    cliclableScales('<?php echo $Area_Seleccionada ?>',2);
+    cliclableScales('<?php echo $Area_Seleccionada ?>',1);
   },
 );
 
   // Agregar un escuchador de eventos para el clic
   ctx3.addEventListener('click', () =>{
-    cliclableScales('<?php echo $Area_Seleccionada ?>',3);
+    cliclableScales('<?php echo $Area_Seleccionada ?>',2);
   },
 );
 
   // Agregar un escuchador de eventos para el clic
   ctx4.addEventListener('click', () =>{
-    cliclableScales('<?php echo $Area_Seleccionada ?>',4);
+    cliclableScales('<?php echo $Area_Seleccionada ?>',3);
   },
 );
 
 
 // Agregar un escuchador de eventos para el clic
   ctx5.addEventListener('click', () =>{
-    cliclableScales('<?php echo $Area_Seleccionada ?>',5);
+    cliclableScales('<?php echo $Area_Seleccionada ?>',4);
   },
 );
 </script>

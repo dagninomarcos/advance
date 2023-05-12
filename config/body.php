@@ -1,4 +1,4 @@
-style="background-image: url('icon/fondo_6.png');
+style="background-image: url('icon/Fondo_6.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; 
